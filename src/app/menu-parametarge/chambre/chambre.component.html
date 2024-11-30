@@ -1,0 +1,285 @@
+<body class="tt">
+    <!-- Note: This example only works with Windows Insider Preview Builds 16237+. -->
+
+    <header>
+
+        <label class="header_name"> الغرف</label>
+        <button class="close-button" (click)="closeThisComponent()">X</button>
+
+    </header>
+    <aside>
+        <div class="Groupe-Bouton">
+            <div class="flex-row-around" >
+                <button data-backdrop="false" type="button" class="Bouton_new3 btn btn-labeled btn-default " data-original-title="Add" data-toggle="modal" data-target="#Modal" (click)="onOpenModal('add')">
+                    <span class="label-btn"> 
+                        <i class="fa-solid fa-file-invoice-dollar iconOrdrePaiement"></i>
+                    </span>
+                    <div class="bouton_style-2"> إضافة </div>
+
+                </button>
+            </div>
+            <div class="flex-row-around">
+                <button *ngIf="VisModif" [disabled]="DisModif" type="button" class="Bouton_new3 btn btn-labeled btn-default " data-original-title="Edit" data-toggle="modal" data-target="#Modal" (click)="onOpenModal('edit')">
+
+                    <i class="fa fa-pencil-square-o icon_modif" aria-hidden="true"></i>
+                    <div class="bouton_style-2">تعديل </div>
+                </button>
+
+
+
+
+            </div>
+            <div class="flex-row-around">
+                <button *ngIf="VisVoir" type="button" class="Bouton_new3 btn btn-labeled btn-default " data-original-title="Edit" data-toggle="modal" data-target="#Modal" (click)="onOpenModal('voir')">
+
+                    <i class="fa fa-eye icon_modif" aria-hidden="true"></i>
+
+                    <div class="bouton_style-2"> عرض </div>
+                </button>
+
+            </div>
+
+
+
+            <div class="flex-row-around">
+                <button *ngIf="VisBtnDelete" type="button" class="Bouton_new3 btn btn-labeled btn-default " data-original-title="Edit" data-toggle="modal" data-target="#Modal" (click)="onOpenModal('voir')">
+  
+                    <i class="fa-regular fa-trash-can IconDel"></i>
+                    <div class="bouton_style-2"> حذف </div>
+                </button>
+
+            </div>
+
+
+
+        </div>
+    </aside>
+    <section id="main-container">
+
+        <div class="material-table">
+            <div class="card">
+                <p-toast></p-toast>
+                <p-contextMenu #cm [model]="items" data-original-title="ModalPassword" data-toggle="modal" appendTo="body" data-target="#ModalPassword"></p-contextMenu>
+
+                <p-table #dt1 [(first)]="first" [columns]="cols" [paginator]="true" [loading]="loading" [rows]="10" [contextMenu]="cm" [value]="dataRegFactureFournisseur" [globalFilterFields]="['codeSaisie', 'designationLt']" selectionMode="single" [metaKeySelection]="false"
+                    [(selection)]="selectedReglementFactureFournisseur" rowGroupMode="rowspan" groupRowsBy="SourceDepenese" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)" dataKey="code" [tableStyle]="{'min-width': '50rem', 'width': '100%' , 'padding': '1px 1px 1px 1px'}">
+
+                    <ng-template pTemplate="caption" class="col-md-12">
+
+                        <div class="flex-row-start flex-12">
+                            <fieldset class="flex-row-start flex-6" style="padding: 5px;"> 
+                                <section class="flex-row-start"> 
+                                    <label class="control-label-titer flex-4"  >البيان
+                                        :</label>
+                                    <span class="p-input-icon-left ml-auto flex-6">
+                                        <input pInputText class="recherche-value" [(ngModel)]="searchTerm"
+                                            name="zone-recherche" type="text"
+                                            (keyup.enter)="dt1.filterGlobal($any($event.target).value, 'contains')"
+                                            placeholder="البيان ..." />
+                                    </span>
+                                    <button type="button" class="Bouton-rechercher btn  btn-default " data-original-title="Add" (click)="dt1.filterGlobal($any($event.target).value, 'contains')">
+                                        <div class="bouton_style-2" style="margin: 0px 15px 0px 0px;">بحث</div>
+                                        <!-- <i class="fa-solid fa-magnifying-glass search-icon" style="font-size: 18px ;padding-top:2px ;margin: 0px 15px 0px 0px;"></i> -->
+                                        <i class="fa-solid fa-magnifying-glass search-icon"
+                                            style="font-size: 18px ;padding-top:2px ;margin: 0px 15px 0px 0px;"></i>
+                                    </button>
+                                    <button type="button" class="Bouton-rechercher btn  btn-default " data-original-title="Add" (click)="clear(dt1)" (click)="GelAllReglementFactureFournisseur()">
+                                        <div class="bouton_style-2">إعادة تعيين</div>
+                                        <!-- <i class="fa-solid fa-arrows-rotate search-icon" style="padding-top: 2px; padding-right: 3px; font-size: 18px;"></i> -->
+
+                                        <i class="fa-solid fa-arrows-rotate search-icon"
+                                            style="padding-top: 2px; padding-right: 3px; font-size: 18px;"></i>
+                                    </button>
+                                </section>
+                            </fieldset>
+
+
+                            <section class="flex-row-start flex-6">
+                            </section>
+
+                        </div>
+
+
+
+
+                    </ng-template>
+                    <ng-template pTemplate="colgroup" let-col>
+                        <colgroup>
+                            <col *ngFor="let col of col" [style.width]="col.width">
+                        </colgroup>
+                    </ng-template>
+                    <ng-template pTemplate="header" let-col>
+                        <tr>
+                            <th *ngFor="let col of col ; let i = index" pResizableColumn>
+                                <span>
+                                    {{col.header}}
+                                </span>
+                            </th>
+                        </tr>
+                        <tr style="padding: 0px !important; height: 10px !important;">
+                            <th style=" height: 10px !important;">
+                                <p-columnFilter [hideOnClear]="true" [showMenu]="false" [showAddButton]="false" [showOperator]="false" [matchMode]="'contains'" [showMatchModes]="false" type="text" field="name" placeholder="&nbsp;" ariaLabel="Filter Name" />
+                            </th>
+                            <th style="padding: 0px !important;  height: 10px !important;">
+                                <p-columnFilter [hideOnClear]="true" [showMenu]="false" [showAddButton]="false" [showOperator]="false" [matchMode]="'contains'" [showMatchModes]="false" type="text" field="name" placeholder="&nbsp;" ariaLabel="Filter Name" />
+                            </th>
+                            <th style=" height: 10px !important;">
+                                <p-columnFilter [hideOnClear]="true" [showMenu]="false" [showAddButton]="false" [showOperator]="false" [matchMode]="'contains'" [showMatchModes]="false" type="text" field="name" placeholder="&nbsp;" ariaLabel="Filter Name" />
+                            </th>
+                            <th style="padding: 0px !important; height: 10px !important;">
+                                <p-columnFilter [hideOnClear]="true" [showMenu]="false" [showAddButton]="false" [showOperator]="false" [matchMode]="'contains'" [showMatchModes]="false" type="text" field="codeSaisie" placeholder="&nbsp;" ariaLabel="Filter Country" />
+                            </th>
+
+
+
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-domaine let-rowIndex="rowIndex" let-rowgroup="rowgroup" let-rowgroup2="rowgroup2" let-rowspan="rowspan" let-rowspan2="rowspan2">
+                        <tr [pSelectableRow]="domaine" [pContextMenuRow]="domaine">
+
+                            <td>
+                                <i *ngIf="domaine.typeOP !== 'OP'" class="fa-solid fa-money-bill-wave iconAvance" style="padding: 0px;"></i>
+                                <i *ngIf="domaine.typeOP === 'OP'" class="fa-solid fa-file-invoice-dollar iconOrdrePaiement" style="padding: 0px; margin: 0px 4px 0px 0px;"></i>
+
+                            </td>
+                            <td *ngIf="rowgroup" [attr.rowspan]="rowspan">{{ domaine.caisseDTO?.designationAr || domaine.banqueDTO?.designationAr }}</td>
+
+
+
+                            <td style="font-size: 15px !important" class="warning" [ngStyle]="{'background-image': (domaine.codeEtatApprouver == 2) ? (getPicValider()) : ((domaine.codeEtatApprouver == 1) ? (getPicNonEncore()) : (getPicRefuser())) }" style=" width: 65px ;background-repeat: no-repeat;background-size:25px 25px;background-position-y: center;background-position-x: center;">
+                            </td>
+                            <td style="font-size: 16px !important;">{{domaine.codeSaisie}}</td>
+
+
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="4">لا توجد بيانات</td>
+                        </tr>
+                    </ng-template>
+
+
+                </p-table>
+
+
+            </div>
+        </div>
+    </section>
+    <footer>
+    </footer>
+</body>
+
+
+
+
+
+
+<!-- modal primeNG ADD -->
+<p-dialog id="Modal" header="Header" [scrollLeft]="true" [closeOnEscape]="true" [(visible)]="visibleModal" data-backdrop="false" [modal]="true" styleClass="ModalAddSmall" [draggable]="false">
+
+    <ng-template pTemplate="header">
+        <div class="flex-row-start" style="float:right">
+            <h2 class="text-default headerForm"> {{formHeader}}</h2>
+        </div>
+
+        <div class="flex-row-start" style="float:left">
+            <button *ngIf="visBtnSave" class="btn btn-default save-add-ModalSmallXXL" (click)="PostFactureFournisseur()"> 
+              
+                <i class="fa-regular fa-floppy-disk IconSave"></i>
+                حفظ
+            </button>
+
+            <button class="btn btn-default cancel-add-ModalSmallXXL" :closable="true" data-dismiss="modal" (click)="clearForm()"> 
+              
+                <i class="fa-regular fa-rectangle-xmark IconFermer"></i>
+                خروج
+
+            </button>
+
+        </div>
+
+
+    </ng-template>
+
+    <div class="modal-body">
+        <div class="flex-row-start flex-12">
+            <fieldset class="flex-12">
+                <div class="flex-row-start flex-12">
+                    <section class="flex-row-start flex-12">
+                        <label class="control-label flex-2" style="max-width: 11%; ">الرمز : <i
+                                class="fa-lg fa-fw fa fa-times icon-required"></i></label>
+                        <div class="control-input flex-5  " style="padding: 5px 0px 0px 0px  ; max-width: 20%;">
+                            <input disabled="" type="text" pInputText [(ngModel)]="codeSaisie" [required]="true" />
+
+                            <!-- <input disabled="" readonly style="max-width: 55%;" id="codeSaisie" maxlength="10" name="codeSaisie" type="text" class="onlyForCentral form-control-dev input-xs" required [(ngModel)]="codeSaisie"> -->
+                        </div>
+                    </section>
+                </div>
+                <div class="flex-row-start flex-12">
+                    <section class="flex-row-start flex-6">
+                        <label class="control-label flex-4 ">البيان بالعربي : <i class="fa-lg fa-fw fa fa-times icon-required"></i></label>
+                        <div class="control-input flex-5-45">
+                            <input type="text" pInputText [(ngModel)]="designationAr" [required]="true" />
+                        </div>
+                    </section>
+                    <section class="flex-row-start flex-6">
+                        <label class="control-label  flex-4  "> البيان باللاتيني :   <i class="fa-lg fa-fw fa fa-times icon-required"></i></label>
+                        <div class="control-input flex-5-45 ">
+                            <input type="text" pInputText [(ngModel)]="designationLt" [required]="true" />
+
+                        </div>
+                    </section>
+
+                </div>
+
+
+
+
+            </fieldset>
+        </div>
+    </div>
+</p-dialog>
+
+<!-- modal primeNG  Delete-->
+<p-dialog class="modal-delete" id="ModalDelete" data-backdrop="false" header="Header" [(visible)]="visDelete" styleClass="ModalDelete" [modal]="true" [draggable]="false" [resizable]="false">
+    <ng-template pTemplate="header">
+        <h2 class="text-default headerForm"> {{formHeader}}</h2>
+    </ng-template>
+    <div class="modal-body">
+        <form action="" #addForms="ngForm">
+            <fieldset class="deleteForms">
+                <h4 class="text-delete ">هل أنت متأكد من الحذف ?
+                    <button class="btn btn-default save-add-ModalSmall" style="right: 520px ;" (click)="DeleteReglementFactureFournisseur()"> 
+                        <i class="fa-regular fa-floppy-disk IconSave"></i>
+                        حذف
+                    </button>
+                    <button class="btn btn-default cancel-add-ModalSmall" style="right: 430px ;" :closable="true" data-dismiss="modal"> 
+                        <i class="fa-regular fa-rectangle-xmark IconFermer"></i>
+                        خروج
+                    </button>
+                </h4>
+            </fieldset>
+            <br>
+        </form>
+    </div>
+</p-dialog>
+<!-- fin modal primeng  -->
+
+
+
+
+
+
+
+<p-dialog id="ModalPrint" header="Header" [scrollLeft]="true" [(visible)]="visibleModalPrint" data-backdrop="false" [modal]="true" styleClass="ModalPrint" [draggable]="false">
+    <div class="modal-body">
+        <div id="pdfContainer"></div>
+    </div>
+    <ng-template pTemplate="footer">
+        <button style="right: 995px;" class="btn btn-default cancel-add-ModalSmall" :closable="true" data-dismiss="modal" (click)="clearForm() ; CloseModalPrint()"> <i
+                class="fa-lg fa-fw fa fa-times  icon-fermer "></i>خروج
+        </button>
+    </ng-template>
+</p-dialog>

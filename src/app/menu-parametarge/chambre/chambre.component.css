@@ -1,0 +1,6 @@
+:host ::ng-deep .ModalAdd {
+    height: 250px !important;
+    position: fixed;
+    top: 50px !important;
+    bottom: 100px !important;
+}

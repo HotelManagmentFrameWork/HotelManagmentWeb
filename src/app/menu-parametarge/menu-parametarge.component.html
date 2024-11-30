@@ -1,0 +1,273 @@
+<div class="container">
+    <div class="row text-center">
+        <h2> قاعدة البيانات </h2>
+        <div id="menu-box">
+            <div id="item" class="col-sm-6 col-md-3" [routerLink]="['/menu_parametrage/chambre']">
+                <div class="container-block">
+                    <div class="block2">
+                        <span class="LabelCard"> الغرف </span>
+                        <p class="LabelCardDetails"> الغرف...</p>
+
+                    </div>
+                    <div class="block1">
+                        <i class="fa-regular fa-window-restore"></i>
+                    </div>
+
+                    <div *ngIf="HaveFactureFrsNonApprouver" class="block3">
+                        <p-tag [title]="warningMessageFactFrs" icon="pi pi-exclamation-triangle" severity="warning" value="Warning" />
+                    </div>
+
+                </div>
+            </div>
+            <div id="item" class="col-sm-6 col-md-3" [routerLink]="['/menu_parametrage/banque']">
+                <div class="container-block">
+                    <div class="block2">
+                        <span class="LabelCard"> المصارف</span>
+                        <p class="LabelCardDetails"> المصارف...</p>
+                    </div>
+                    <div class="block1">
+                        <i class="fa-solid fa-landmark"></i>
+                    </div>
+                    <div *ngIf="HaveRegFactureFrsNonApprouver" class="block3">
+                        <p-tag [title]="warningMessageRegFactFrs" icon="pi pi-exclamation-triangle" severity="warning" value="Warning" />
+                    </div>
+                </div>
+            </div>
+            <div id="item" class="col-sm-6 col-md-3" [routerLink]="['/menu_parametrage/caisse']">
+                <div class="container-block">
+
+                    <div class="block2">
+                        <span class="LabelCard">الخزائن </span>
+
+                        <p class="LabelCardDetails">الخزائن ...</p>
+                    </div>
+                    <div class="block1">
+                        <i class="fa-solid fa-coins"></i>
+                    </div>
+                    <div *ngIf="HaveFacturePresNonApprouver" class="block3">
+                        <p-tag icon="pi pi-exclamation-triangle" severity="warning" value="Warning" />
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div id="item" class="col-sm-6 col-md-3" [routerLink]="['/menu_parametrage/mode_reglement']">
+                <div class="container-block">
+
+                    <div class="block2">
+                        <span class="LabelCard"> طرق الدفع </span>
+                        <p class="LabelCardDetails"> طرق الدفع...</p>
+                    </div>
+                    <div class="block1">
+                        <i class="fa-solid fa-comments-dollar"></i>
+                    </div>
+
+                    <div *ngIf="HaveRegFacturePresNonApprouver" class="block3">
+                        <p-tag icon="pi pi-exclamation-triangle" severity="warning" value="Warning" />
+                    </div>
+                </div>
+            </div>
+            <div id="item" class="col-sm-6 col-md-3" [routerLink]="['/menu_parametrage/region']">
+                <div class="container-block">
+
+                    <div class="block2">
+                        <span class="LabelCard">الجنسيات  </span>
+                        <p class="LabelCardDetails">الجنسيات ...</p>
+                    </div>
+                    <div class="block1">
+                        <i class="fa-solid fa-earth-americas"></i>
+                    </div>
+                </div>
+            </div>
+            <div id="item" class="col-sm-6 col-md-3" [routerLink]="['/menu_parametrage/ville']">
+                <div class="container-block">
+
+                    <div class="block2">
+                        <span class="LabelCard">المدينة</span>
+                        <p class="LabelCardDetails"> المدينة...</p>
+                    </div>
+                    <div class="block1">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                </div>
+            </div>
+
+           <div id="item" class="col-sm-6 col-md-3" [routerLink]="['/menu_parametrage/taxe']">
+          <div class="container-block">
+           
+            <div class="block2">
+              <span>الإستقطاعات</span>
+              <p> الإستقطاعات ...</p>
+            </div>
+            <div class="block1">
+                <i class="fa-solid fa-receipt"></i>
+            </div>
+          </div>
+        </div>
+  
+  
+        <div id="item" class="col-sm-6 col-md-3" [routerLink]="['/menu_parametrage/devise']">
+          <div class="container-block">
+           
+            <div class="block2">
+              <span> العملة </span>
+              <p> العملة...</p>
+            </div>
+            <div class="block1">
+                <i class="fa fa-rectangle-list" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>  
+        <div id="item" class="col-sm-6 col-md-3" [routerLink]="['/menu_parametrage/taux_change']">
+            <div class="container-block">
+             
+              <div class="block2">
+                <span> سعر الصرف </span>
+                <p> سعر الصرف...</p>
+              </div>
+              <div class="block1">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+              </div>
+            </div>
+          </div>  
+
+          <div id="item" class="col-sm-6 col-md-3" [routerLink]="['/menu_parametrage/etat_chambre']">
+            <div class="container-block">
+             
+              <div class="block2">
+                <span>حالة الغرف </span>
+                <p> حالة الغرف ...</p>
+              </div>
+              <div class="block1">
+                <i class="fa-solid fa-bed"></i>
+              </div>
+            </div>
+          </div>  
+
+
+
+          <div id="item" class="col-sm-6 col-md-3" [routerLink]="['/menu_parametrage/type_depense']">
+            <div class="container-block">
+             
+              <div class="block2">
+                <span> أنواع المصروفات </span>
+                <p> أنواع المصروفات ...</p>
+              </div>
+              <div class="block1">
+                <i class="fa-solid fa-list-ul"></i>
+              </div>
+            </div>
+          </div> 
+
+          <div id="item" class="col-sm-6 col-md-3" [routerLink]="['/menu_parametrage/type_recette']">
+            <div class="container-block">
+             
+              <div class="block2">
+                <span>أنواع الإيرادات </span>
+                <p> أنواع الإيرادات ...</p>
+              </div>
+              <div class="block1">
+                <i class="fa-solid fa-list-ul"></i>
+              </div>
+            </div>
+          </div> 
+          
+          <div id="item" class="col-sm-6 col-md-3" [routerLink]="['/menu_parametrage/responsable_remise']">
+            <div class="container-block">
+             
+              <div class="block2">
+                <span> مسؤول التخفيض </span>
+                <p> مسؤول التخفيض ...</p>
+              </div>
+              <div class="block1">
+                <i class="fa-regular fa-user"></i>
+              </div>
+            </div>
+          </div> 
+
+          
+          <div id="item" class="col-sm-6 col-md-3" [routerLink]="['/menu_parametrage/societe']">
+            <div class="container-block">
+             
+              <div class="block2">
+                <span>الجهات </span>
+                <p> الجهات ...</p>
+              </div>
+              <div class="block1">
+                <i class="fa-solid fa-house-chimney-window"></i>
+              </div>
+            </div>
+          </div> 
+          
+          <div id="item" class="col-sm-6 col-md-3" [routerLink]="['/menu_parametrage/convention']">
+            <div class="container-block">
+             
+              <div class="block2">
+                <span> الاتفاقيات </span>
+                <p> الاتفاقيات ...</p>
+              </div>
+              <div class="block1">
+                <i class="fa-regular fa-handshake"></i>
+              </div>
+            </div>
+          </div> 
+          
+          <div id="item" class="col-sm-6 col-md-3" [routerLink]="['/menu_parametrage/prestation']">
+            <div class="container-block">
+             
+              <div class="block2">
+                <span> الخدمات </span>
+                <p> الخدمات ...</p>
+              </div>
+              <div class="block1">
+                <i class="fa-solid fa-bars-staggered"></i>
+              </div>
+            </div>
+          </div> 
+          
+          <div id="item" class="col-sm-6 col-md-3" [routerLink]="['/menu_parametrage/type_sejour']">
+            <div class="container-block">
+             
+              <div class="block2">
+                <span> نوع الإقامة  </span>
+                <p> نوع الإقامة  ...</p>
+              </div>
+              <div class="block1">
+                <i class="fa-solid fa-bars-progress"></i>
+              </div>
+            </div>
+          </div> 
+
+          <div id="item" class="col-sm-6 col-md-3" [routerLink]="['/menu_parametrage/vat']">
+            <div class="container-block">
+             
+              <div class="block2">
+                <span> الضريبة  </span>
+                <p> الضريبة  ...</p>
+              </div>
+              <div class="block1">
+                <i class="fa-solid fa-percent"></i>
+              </div>
+            </div>
+          </div> 
+
+          <!-- <div id="item" class="col-sm-6 col-md-3" [routerLink]="['/menu_parametrage/taux_change']">
+            <div class="container-block">
+             
+              <div class="block2">
+                <span> الخدمات </span>
+                <p> الخدمات ...</p>
+              </div>
+              <div class="block1">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+              </div>
+            </div>
+          </div>  -->
+
+
+        </div>
+    </div>
+</div>
+
+ 

@@ -1,0 +1,117 @@
+<div class="container">
+    <div class="row text-center">
+        <h2> خزائن الإيرادات  </h2>
+        <div id="menu-box">
+            
+                <div id="item" class="col-sm-6 col-md-3" [routerLink]="['/menu_caisse_recette/alimentation_caisse']">
+                    <div class="container-block">
+                        <div class="block2">
+                            <span class="LabelCard"> دخوال أموال </span>
+                            <p class="LabelCardDetails"> دخوال أموال...</p>
+    
+                        </div>
+                        <div class="block1">
+                            <i class="fa-regular fa-square-plus"></i>
+                        </div>
+    
+                        <div *ngIf="HaveFactureFrsNonApprouver" class="block3">
+                            <p-tag [title]="warningMessageFactFrs" icon="pi pi-exclamation-triangle" severity="warning" value="Warning" />
+                        </div>
+    
+                    </div>
+                </div>
+                <div id="item" class="col-sm-6 col-md-3" [routerLink]="['/menu_caisse_recette/transfert_caisse']">
+                    <div class="container-block">
+                        <div class="block2">
+                            <span class="LabelCard"> تحويل بين الخزائن</span>
+                            <p class="LabelCardDetails"> تحويل بين الخزائن...</p>
+                        </div>
+                        <div class="block1">
+                            <i class="fa-solid fa-money-bill-transfer"></i>
+                        </div>
+                        <div *ngIf="HaveRegFactureFrsNonApprouver" class="block3">
+                            <p-tag [title]="warningMessageRegFactFrs" icon="pi pi-exclamation-triangle" severity="warning" value="Warning" />
+                        </div>
+                    </div>
+                </div>
+                <div id="item" class="col-sm-6 col-md-3" [routerLink]="['/menu_caisse_recette/mouvement_caisse']">
+                    <div class="container-block">
+    
+                        <div class="block2">
+                            <span class="LabelCard">حركة الخزينة </span>
+    
+                            <p class="LabelCardDetails">حركة الخزينة ...</p>
+                        </div>
+                        <div class="block1">
+                            <i class="fa-solid fa-list-ol"></i>
+                        </div>
+                        <div *ngIf="HaveFacturePresNonApprouver" class="block3">
+                            <p-tag icon="pi pi-exclamation-triangle" severity="warning" value="Warning" />
+                        </div>
+                    </div>
+                </div>
+    
+    
+    
+                <div id="item" class="col-sm-6 col-md-3" [routerLink]="['/menu_caisse_recette/reception_session']">
+                    <div class="container-block">
+    
+                        <div class="block2">
+                            <span class="LabelCard"> إستلام الخزائن </span>
+                            <p class="LabelCardDetails"> إستلام الخزائن...</p>
+                        </div>
+                        <div class="block1">
+                            <i class="fa-solid fa-hand-holding-medical"></i>
+                        </div>
+    
+                        <div *ngIf="HaveRegFacturePresNonApprouver" class="block3">
+                            <p-tag icon="pi pi-exclamation-triangle" severity="warning" value="Warning" />
+                        </div>
+                    </div>
+                </div>
+                <div id="item" class="col-sm-6 col-md-3" [routerLink]="['/menu_caisse_recette/session_receptionner']">
+                    <div class="container-block">
+    
+                        <div class="block2">
+                            <span class="LabelCard">الخزائن المستلمة  </span>
+                            <p class="LabelCardDetails">الخزائن المستلمة ...</p>
+                        </div>
+                        <div class="block1">
+                            <i class="fa-solid fa-grip"></i>
+                        </div>
+                    </div>
+                </div>
+                <div id="item" class="col-sm-6 col-md-3" [routerLink]="['/menu_caisse_recette/session_cloturer']">
+                    <div class="container-block">
+    
+                        <div class="block2">
+                            <span class="LabelCard">الورديات المقفلة</span>
+                            <p class="LabelCardDetails"> الورديات المقفلة...</p>
+                        </div>
+                        <div class="block1">
+                            <i class="fa-solid fa-user-lock"></i>
+                        </div>
+                    </div>
+                </div>
+ 
+
+                <div id="item" class="col-sm-6 col-md-3" [routerLink]="['/menu_caisse_recette/session_non_cloturer']">
+                    <div class="container-block">
+    
+                        <div class="block2">
+                            <span class="LabelCard">الورديات الغير مقفلة</span>
+                            <p class="LabelCardDetails"> الورديات الغير مقفلة...</p>
+                        </div>
+                        <div class="block1">
+                            <i class="fa-solid fa-lock-open"></i>
+                        </div>
+                    </div>
+                </div>
+
+    
+            
+
+
+        </div>
+    </div>
+</div>
